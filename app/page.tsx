@@ -7,10 +7,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/ui/button";
-
-// Remove router import; we only read the query parameter now
 import { useSearchParams } from "next/navigation";
 import { MoveLeftIcon } from "lucide-react";
+import { Suspense } from "react";
 
 const ProductGrid = ({
   className,
@@ -134,7 +133,7 @@ const ProductList = ({
   );
 };
 
-export default function Home() {
+function MainContent() {
   // Derive the selected product from the query parameter
   const searchParams = useSearchParams();
   const selected = searchParams.get("selected");
@@ -144,5 +143,13 @@ export default function Home() {
       <ProductGrid selected={selected} />
       <ProductList selected={selected} />
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
   );
 }
