@@ -124,7 +124,7 @@ const ProductList = ({
                 width={1920}
                 height={1920}
               />
-              <p className="text-center">{product.name}</p>
+              <p className="text-center text-lg">{product.name}</p>
             </div>
           </div>
         ))}
