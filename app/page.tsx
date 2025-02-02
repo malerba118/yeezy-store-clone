@@ -53,7 +53,11 @@ const ProductGrid = ({
             scroll={false}
             onClick={(e) => {
               // Set the transform origin before navigation
-              setOrigin({ x: e.clientX, y: e.clientY });
+              const rect = e.currentTarget.getBoundingClientRect();
+              setOrigin({
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2,
+              });
             }}
           >
             <div>
