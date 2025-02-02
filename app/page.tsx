@@ -23,9 +23,12 @@ const ProductGrid = ({
   return (
     <motion.div
       className="fixed inset-0 overflow-auto"
-      style={{ transformOrigin: `${origin.x}px ${origin.y}px` }}
+      style={{
+        transformOrigin: `${origin.x}px ${origin.y}px`,
+        overflow: selected ? "hidden" : "auto",
+      }}
       animate={{
-        scale: selected ? 2 : 1,
+        scale: selected ? 1.5 : 1,
         x: selected ? window.innerWidth / 2 - origin.x : 0,
         y: selected ? window.innerHeight / 2 - origin.y : 0,
       }}
@@ -39,7 +42,7 @@ const ProductGrid = ({
     >
       <motion.div
         className={cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-8 p-8 bg-white",
+          "grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 p-8 bg-white",
           className
         )}
       >
@@ -90,6 +93,7 @@ const ProductList = ({
       ref={listRef}
       className="fixed inset-0 snap-y snap-mandatory overflow-auto bg-white visible"
       key="list"
+      style={{ overflow: selected ? "auto" : "hidden" }}
       initial={{ opacity: 0 }}
       animate={{
         opacity: selected ? 1 : 0,
